@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lens.com.uy/sitemap.xml

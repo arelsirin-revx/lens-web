@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Página no encontrada — Lens</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/icon.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/styles.css">
+<script>
+  // Pick the language before first paint: /en/… paths and non-Spanish browsers get English.
+  (function () {
+    var p = location.pathname, n = (navigator.language || 'es').toLowerCase();
+    if (/^\/en(\/|$)/.test(p) || (!/^\/es(\/|$)/.test(p) && n.indexOf('es') !== 0)) {
+      document.documentElement.lang = 'en';
+      document.title = 'Page not found — Lens';
+    }
+  })();
+</script>
+</head>
+<body class="nf-page">
+
+<header class="top shell">
+  <a href="/" class="mark" aria-label="Lens"><span>Lens</span></a>
+  <span class="lang" role="group" aria-label="Idioma / Language">
+    <button type="button" data-set-lang="es" lang="es">ES</button>
+    <span class="sep" aria-hidden="true">/</span>
+    <button type="button" data-set-lang="en" lang="en">EN</button>
+  </span>
+</header>
+
+<main class="nf shell">
+  <div class="nf-copy">
+    <span class="eyebrow">
+      <span data-l="es">Error 404</span><span data-l="en">Error 404</span>
+    </span>
+
+    <h1 class="nf-title">
+      <span data-l="es">Esta página no existe. <em>Puede haberse movido o la dirección no es correcta.</em></span>
+      <span data-l="en" lang="en">This page doesn’t exist. <em>It may have moved, or the address isn’t right.</em></span>
+    </h1>
+
+    <p class="nf-path" hidden>
+      <span class="nf-path-label"><span data-l="es">Dirección</span><span data-l="en">Address</span></span>
+      <code id="nf-path"></code>
+    </p>
+
+    <ul class="nf-links" role="list" data-l="es">
+      <li><a href="/"><span class="nf-num">01</span><span>Inicio</span><span class="arrow" aria-hidden="true">→</span></a></li>
+      <li><a href="/#firma"><span class="nf-num">02</span><span>Cómo trabajamos</span><span class="arrow" aria-hidden="true">→</span></a></li>
+      <li><a href="/#situaciones"><span class="nf-num">03</span><span>Situaciones</span><span class="arrow" aria-hidden="true">→</span></a></li>
+      <li><a href="/#contacto"><span class="nf-num">04</span><span>Contacto</span><span class="arrow" aria-hidden="true">→</span></a></li>
+    </ul>
+    <ul class="nf-links" role="list" data-l="en" lang="en">
+      <li><a href="/en/"><span class="nf-num">01</span><span>Home</span><span class="arrow" aria-hidden="true">→</span></a></li>
+      <li><a href="/en/#firma"><span class="nf-num">02</span><span>How we work</span><span class="arrow" aria-hidden="true">→</span></a></li>
+      <li><a href="/en/#situaciones"><span class="nf-num">03</span><span>Situations</span><span class="arrow" aria-hidden="true">→</span></a></li>
+      <li><a href="/en/#contacto"><span class="nf-num">04</span><span>Contact</span><span class="arrow" aria-hidden="true">→</span></a></li>
+    </ul>
+  </div>
+
+  <!-- The logotype's square frame, enlarged: the error code sits where the word would. -->
+  <div class="nf-frame" aria-hidden="true">
+    <span class="nf-code">404</span>
+  </div>
+</main>
+
+<footer class="foot shell nf-foot">
+  <a href="mailto:correo@lens.com.uy" class="foot-mail">correo@lens.com.uy</a>
+  <span class="foot-meta"><span>© Lens 2026</span></span>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    function sync() {
+      document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-set-lang') === root.lang));
+      });
+    }
+    document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        root.lang = b.getAttribute('data-set-lang');
+        document.title = root.lang === 'en' ? 'Page not found — Lens' : 'Página no encontrada — Lens';
+        sync();
+      });
+    });
+    sync();
+
+    var p = location.pathname;
+    if (p && p !== '/' && !/\/404(\.html)?$/.test(p)) {
+      var shown = p; try { shown = decodeURI(p); } catch (e) {}
+      document.getElementById('nf-path').textContent = shown;
+      document.querySelector('.nf-path').hidden = false;
+    }
+  })();
+</script>
+</body>
+</html>
